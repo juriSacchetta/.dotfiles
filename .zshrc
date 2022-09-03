@@ -82,7 +82,9 @@ plugins=(git
 	zsh-autosuggestions
 	sudo
 	enhancd
-	k)
+	k
+	tmux
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -121,8 +123,17 @@ alias G="grep -i"
 export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
 export WORKON_HOME=$HOME/.virtualenvs
 export PATH=$(echo "$PATH" | sed -e 's/:\/usr\/lib\/python310.zip$//')
+export ZSH_TMUX_AUTOSTART=true
 source /usr/bin/virtualenvwrapper.sh
 
 [ -f ~/.resh/shellrc ] && source ~/.resh/shellrc # this line was added by RESH (Rich Enchanced Shell History)
 
 eval $(thefuck --alias)
+
+#To start tmux at every shell login https://wiki.archlinux.org/title/Tmux#Start_tmux_on_every_shell_login
+#if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+#	    tmux attach || tmux >/dev/null 2>&1
+#fi
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/.p10k.zsh.
+[[ ! -f ~/.dotfiles/.p10k.zsh ]] || source ~/.dotfiles/.p10k.zsh
