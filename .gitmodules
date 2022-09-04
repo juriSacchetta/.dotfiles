@@ -1,0 +1,3 @@
+[submodule "waybar/base16-waybar"]
+	path = waybar/base16-waybar
+	url = https://github.com/mnussbaum/base16-waybar.git

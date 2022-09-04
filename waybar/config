@@ -10,7 +10,7 @@
 
     "modules-center": ["hyprland/window"],
 
-    "modules-right": ["tray", "idle_inhibitor", "pulseaudio", "network", "temperature", "battery", "battery#bat2", "clock"],
+    "modules-right": ["tray", "idle_inhibitor", "pulseaudio", "network", "cpu", "backlight", "temperature", "battery", "clock"],
 
     "wlr/workspaces": {
     	"format": "{name}: {icon}",
@@ -112,9 +112,6 @@
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
-    "battery#bat2": {
-        "bat": "BAT2"
-    },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         //"format-wifi": "{essid} ({signalStrength}%) ",
@@ -157,6 +154,20 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 14,
+        "icon-theme": "Numix-Circle",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+           "Alacritty"
+        ],
+        "app_ids-mapping": {
+          "firefoxdeveloperedition": "firefox-developer-edition"
+        }
     }
 }
 
