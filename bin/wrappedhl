@@ -1,0 +1,17 @@
+#!/bin/sh
+
+cd ~
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+export XCURSOR_SIZE=24
+
+# For flameshot
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+export QT_QPA_PLATFORM=wayland
+
+# For bins
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
+export WORKON_HOME=$HOME/.virtualenvs
+exec Hyprland
+
