@@ -6,7 +6,7 @@ selected=$(echo -e $entries|wofi --width 250 --height 210 --dmenu --cache-file /
 
 case $selected in
   logout)
-    swaymsg exit;;
+    hyprctl dispatch exit now;;
   suspend)
     exec systemctl suspend;;
   reboot)
