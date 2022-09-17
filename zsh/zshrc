@@ -83,7 +83,6 @@ plugins=(git
 	sudo
 	enhancd
 	k
-	tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -116,9 +115,6 @@ source $ZSH/oh-my-zsh.sh
 alias k="k -h --si"
 alias ka="k -a"
 alias G="grep -i"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
 export WORKON_HOME=$HOME/.virtualenvs
