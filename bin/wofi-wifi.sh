@@ -24,14 +24,14 @@ LIST=$(nmcli --fields "$FIELDS" device wifi list | sed '/^--/d' | \
       sub(/yes/, "", $3);
       sub(/no/, "", $3);
       if ($4 == "--") $4=""; else $4="";
-      printf "<tt>%-4s  %-26s </tt>%s   %s\n", $2,$1,$3,$4 }')
+      printf "%-4s  %-26s %s   %s\n", $2,$1,$3,$4 }')
 
 # Bluetooth connections
 LISTB=$(nmcli --fields NAME,TYPE,ACTIVE con show | \
   awk -F "[  ]{2,}" '/bluetooth/ {;
     sub(/yes/, "", $3);
     sub(/no/, "", $3);
-    printf "<tt>   %-26s </tt>%s   \n", $1,$3 }')
+    printf "    %-26s %s   \n", $1,$3 }')
 
 # Gives a list of known connections so we can parse it later
 KNOWNCON=$(nmcli connection show | awk -F '[[:space:]][[:space:]]+' '{printf "%s\n", $1}')
