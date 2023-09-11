@@ -1,9 +1,9 @@
+[misc]
 # Don't ask for confirmations
 #assume_yes = true
-
 # Disable specific steps - same options as the command line flag
 #disable = ["system", "emacs"]
-disable = ["vim"]
+#disable = ["vim"]
 # Ignore failures for these steps
 #ignore_failures = ["powershell"]
 
@@ -96,6 +96,6 @@ repos = [
 # Offer to update firmware; if false just check for and display available updates
 upgrade = true
 
-[flatpak]
+#[flatpak]
 # Use sudo for updating the system-wide installation
 #use_sudo = true

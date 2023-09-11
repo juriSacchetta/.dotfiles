@@ -1,74 +1,135 @@
-@import "./base16-waybar/colors/base16-default-dark.css";
-
 * {
-  transition: none;
-  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  font-family: "DejaVu Sans", "Font Awesome 5 Free";
+  font-size: 14px;
 }
 
-#waybar {
-  color: @base04;
-  background: @base01;
+window .modules-left,
+window .modules-center,
+window .modules-right {
+  background: rgba(55, 59, 65, 0.85);
+  padding: 0px 8px 0px 8px;
 }
 
-#workspaces {
-  margin: 0 4px;
+window .modules-left {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+window .modules-right {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+window .modules-center {
+  border-radius: 16px;
+}
+window#waybar {
+  background: transparent;
+}
+
+window > box {
+  margin: 5px 0px 5px 0px;
+  padding: 0px 0px 0px 0px;
+  background: rgba(43, 48, 59, 0);
+  color: white;
+  border-radius: 16px;
+  min-height: 32px;
 }
 
 #workspaces button {
-  margin: 4px 0;
-  padding: 0 6px;
-  color: @base05;
+  font-weight: bolder;
+  margin: 3px;
+  padding: 0px 2px 0px 2px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  min-width: 24px;
+  box-shadow: inset 0 -3px transparent;
 }
 
-#workspaces button.visible {
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+  background: transparent;
+  box-shadow: inset 0 -3px transparent;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 #workspaces button.focused {
-  border-radius: 4px;
-  background-color: @base02;
+  background: transparent;
+  box-shadow: inset 0 -3px #ffffff;
+  color: rgba(255, 255, 255, 1);
 }
 
 #workspaces button.urgent {
-  color: rgba(238, 46, 36, 1);
+  box-shadow: inset 0 -3px #cc6666;
+  color: #cc6666;
 }
 
-#tray {
-  margin: 4px 16px 4px 4px;
-  border-radius: 4px;
-  background-color: @base02;
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd,
+#window,
+#workspaces,
+#custom-gammastep
+{
+  padding: 0px 8px 0px 8px;
+  margin: 0 5px;
+  color: #ffffff;
 }
 
-#tray * {
-  padding: 0 6px;
-  border-left: 1px solid @base00;
+#mode {
+  font-weight: bolder;
+  color: #f0c674;
 }
 
-#tray *:first-child {
-  border-left: none;
+#mpd.stopped {
+  color: rgba(255, 255, 255, 0.3);
 }
 
-#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-spotify, #custom-weather, #custom-mail, #clock, #temperature {
-  margin: 4px 2px;
-  padding: 0 6px;
-  background-color: @base02;
-  border-radius: 4px;
-  min-width: 20px;
+#idle_inhibitor.deactivated {
+  color: rgba(255, 255, 255, 0.3);
 }
 
-#pulseaudio.muted {
-  color: @base0F;
-}
-
-#pulseaudio.bluetooth {
-  color: @base0C;
+#network.disconnected, #network.disabled {
+  color: rgba(255, 255, 255, 0.3);
 }
 
 #clock {
-  margin-left: 12px;
-  margin-right: 4px;
-  background-color: transparent;
+  font-weight: bolder;
 }
 
-#temperature.critical {
-  color: @base0F;
+@keyframes blink {
+  to {
+    color: #ffffff;
+  }
+}
+
+#battery.critical:not(.charging) {
+  /* background-color: #f53c3c; */
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
 }

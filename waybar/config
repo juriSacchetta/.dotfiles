@@ -1,52 +1,78 @@
-{
-    "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 32, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
+{ 
 
-    "modules-left": ["wlr/workspaces"],
+    "modules-left": ["sway/window", "sway/mode"],
+    "modules-center": ["sway/workspaces"],
+    "modules-right": ["idle_inhibitor", "custom/gammastep", "pulseaudio", "pulseaudio#mic", "network#vpn", "network", "battery", "clock", "tray"],
 
-    "modules-center": ["hyprland/window"],
-
-    "modules-right": ["keyboard-state", "tray", "custom/spotify","idle_inhibitor", "pulseaudio", "network", "cpu", "backlight", "temperature", "battery", "clock"],
-
-    "wlr/workspaces": {
-    	"format": "{name}: {icon}",
-    	"format-icons": {
-    		"urgent": "",
-    		"focused": "",
-    		"active": "",
-    		"default": ""
-    	},
-        "on-click": "activate",
-    },
-
-    // Modules configuration
-    "keyboard-state":{
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
+    "sway/window": {
+        "format": "{}",
+        "max-length": 50,
+        "rewrite": {
+            "": "\uf015  ",
+            "(.*) - Visual Studio Code": "\uf121  $1",
+            "(.*) - Brave": "\uf268  $1",
+            "xterm-kitty - (.*)": "\uf120  $1",
+            "(.*) — Mozilla Firefox": "\ue007  $1",
+            "Mozilla Firefox": "\ue007  Mozilla Firefox",
+            "xterm-kitty - (.*)": "\uf120  $1",
+            "(.*) - VIM": "\uf036  $1",
+            "Telegram (.*)": "\uf2c6  $1",
+            "(.*) - TextMaker": "\uf1c2  $1",
+            "(.*) - PlanMaker": "\uf1c3  $1",
+            "(.*) - Presentations": "\uf1c4  $1",
+            "/(.*)": "\uf07b  /$1",
+            "ymuse": "\uf001  Ymuse",
+            "(.*) — 1Password": "\uf023  $1",
+            "Postman": "\uf6cc  Postman",
+            "Volume Control": "\uf027  Volume Control",
+            "Input Method Configuration": "\uf11c  Input Method Configuration",
+            "imv - (.*)": "\uf1c5  $1",
+            "(.*) - mpv": "\uf03d  $1",
+            "smb://(.*)": "\uf6ff  $1",
+            "network:///": "\uf6ff  ",
+            "trash:///": "\uf2f8  ",
+            "mtp:/(.*)": "\uf3cd  $1",
+            "afc:/(.*)": "\uf3cd  $1",
+            "computer:///": "\uf108  ",
+            "ncmpcpp (.*)": "\uf001   ncmpcpp"
         }
     },
+        
+    "sway/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": true,
+         "format": "{value}",
+         "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "", 
+            "urgent": ": ",
+            "focused": "",
+            "default": ""
+         }
+    },
+
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+        "format": "\uf054 {}"
     },
     "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title}",
+        "format-disconnected": "",
+        "format-stopped": "\uf3b5",
         "unknown-tag": "N/A",
         "interval": 2,
         "consume-icons": {
             "on": " "
+
         },
         "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
             "on": " "
         },
         "repeat-icons": {
@@ -59,48 +85,32 @@
             "paused": "",
             "playing": ""
         },
+        "on-click": "pkill ncmpcpp; kitty -e ncmpcpp",
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": "\uf0f4",
+            "deactivated": "\uf0f4"
         }
     },
     "tray": {
-        "icon-size": 21,
-        "spacing": 10
+ 
+        "spacing": 10,
+        "show-passive-items": true
     },
     "clock": {
-        "timezone": "Europe/Rome",
-        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%d-%m-%Y}"
+   
+        "format": "{:\uf017 %H:%M}",
+        "format-alt": "{:\uf133 %A, %d %B, %Y}",
+        "tooltip-format": "<big>{:%d %B, %Y}</big>\n<tt><small>{calendar}</small></tt>"
     },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-	"hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input",
-        "critical-threshold": 80,
-        "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
+
+
     "battery": {
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
         },
@@ -108,29 +118,32 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
+        "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
+
     "network": {
-        //"interface": "wlp59s0", // (Optional) To force the use of this interface
-        //"format-wifi": "{essid} ({signalStrength}%) ",
-        "format-wifi": "{signalStrength}% ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        //"format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click": "wofi-wifi.sh",	// https://raw.githubusercontent.com/cristobaltapia/dotfiles_sway/master/home/.config/wofi/scripts/wofi-wifi.sh
-	//"on-click": "nmtui",
+        "interval": 5,
+        "format-wifi": "\uf1eb",
+        "format-ethernet": "\uf796",
+        "format-disconnected": "\uf127  Offline",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%): {ipaddr}"
     },
+    "network#vpn": {
+      "interval": 5,
+      "interface": "tun0",
+      "format": "\uf3ed",
+      "format-disconnected": "",
+      "tooltip-format": "VPN Connected: {ipaddr}"
+  },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
+        "scroll-step": 1,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "",
+        "format-source": "",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
@@ -141,28 +154,21 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pkill pulsemixer; kitty -e pulsemixer"
     },
-    "custom/spotify": {
-    	"exec": "/usr/bin/python3 /home/js/.config/waybar/mediaplayer.py --player spotify",
-    	"format": "{icon}",	
-    	"return-type": "json",
-    	"on-click": "playerctl play-pause",
-    	"on-scroll-up": "playerctl next",
-    	"on-scroll-down": "playerctl previous"
+    "pulseaudio#mic": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "tooltip": false
     },
-    "wlr/taskbar": {
-        "format": "{icon}",
-        "icon-size": 14,
-        "icon-theme": "Numix-Circle",
-        "tooltip-format": "{title}",
-        "on-click": "activate",
-        "on-click-middle": "close",
-        "ignore-list": [
-           "Alacritty"
-        ],
-        "app_ids-mapping": {
-          "firefoxdeveloperedition": "firefox-developer-edition"
-        }
-    }
+    "custom/gammastep": {
+      "format": "{}",
+      "interval": 5,
+      "on-update": "",
+      "exec": "sleep 0.05; /usr/bin/gammastep.sh",
+      "on-click": "/usr/bin/gammastep.sh toggle"
+  }
+
 }
