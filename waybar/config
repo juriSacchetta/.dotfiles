@@ -1,78 +1,52 @@
-{ 
+{
+    "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
 
-    "modules-left": ["sway/window", "sway/mode"],
-    "modules-center": ["sway/workspaces"],
-    "modules-right": ["idle_inhibitor", "custom/gammastep", "pulseaudio", "pulseaudio#mic", "network#vpn", "network", "battery", "clock", "tray"],
+    "modules-left": ["hyprland/workspaces"],
 
-    "sway/window": {
-        "format": "{}",
-        "max-length": 50,
-        "rewrite": {
-            "": "\uf015  ",
-            "(.*) - Visual Studio Code": "\uf121  $1",
-            "(.*) - Brave": "\uf268  $1",
-            "xterm-kitty - (.*)": "\uf120  $1",
-            "(.*) — Mozilla Firefox": "\ue007  $1",
-            "Mozilla Firefox": "\ue007  Mozilla Firefox",
-            "xterm-kitty - (.*)": "\uf120  $1",
-            "(.*) - VIM": "\uf036  $1",
-            "Telegram (.*)": "\uf2c6  $1",
-            "(.*) - TextMaker": "\uf1c2  $1",
-            "(.*) - PlanMaker": "\uf1c3  $1",
-            "(.*) - Presentations": "\uf1c4  $1",
-            "/(.*)": "\uf07b  /$1",
-            "ymuse": "\uf001  Ymuse",
-            "(.*) — 1Password": "\uf023  $1",
-            "Postman": "\uf6cc  Postman",
-            "Volume Control": "\uf027  Volume Control",
-            "Input Method Configuration": "\uf11c  Input Method Configuration",
-            "imv - (.*)": "\uf1c5  $1",
-            "(.*) - mpv": "\uf03d  $1",
-            "smb://(.*)": "\uf6ff  $1",
-            "network:///": "\uf6ff  ",
-            "trash:///": "\uf2f8  ",
-            "mtp:/(.*)": "\uf3cd  $1",
-            "afc:/(.*)": "\uf3cd  $1",
-            "computer:///": "\uf108  ",
-            "ncmpcpp (.*)": "\uf001   ncmpcpp"
+    "modules-center": [],
+
+    "modules-right": ["tray", "cpu", "memory", "network", "bluetooth", "temperature", "battery", "battery#bat2", "pulseaudio", "clock"],
+
+    "hyprland/workspaces": {
+    	"format": "{icon}",
+    	"format-icons": {
+    		"urgent": "",
+    		"focused": "",
+    		"active": "",
+    		"default": ""
+    	},
+        "on-click": "activate",
+    },
+
+    // Modules configuration
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
         }
     },
-        
-    "sway/workspaces": {
-         "disable-scroll": true,
-         "all-outputs": true,
-         "format": "{value}",
-         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "9": "9",
-            "10": "", 
-            "urgent": ": ",
-            "focused": "",
-            "default": ""
-         }
-    },
-
     "sway/mode": {
-        "format": "\uf054 {}"
+        "format": "<span style=\"italic\">{}</span>"
     },
     "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title}",
-        "format-disconnected": "",
-        "format-stopped": "\uf3b5",
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
         "unknown-tag": "N/A",
         "interval": 2,
         "consume-icons": {
             "on": " "
-
         },
         "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
             "on": " "
         },
         "repeat-icons": {
@@ -85,90 +59,111 @@
             "paused": "",
             "playing": ""
         },
-        "on-click": "pkill ncmpcpp; kitty -e ncmpcpp",
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "\uf0f4",
-            "deactivated": "\uf0f4"
+            "activated": "",
+            "deactivated": ""
         }
     },
     "tray": {
- 
-        "spacing": 10,
-        "show-passive-items": true
+        "icon-size": 21,
+        "spacing": 5
     },
     "clock": {
-   
-        "format": "{:\uf017 %H:%M}",
-        "format-alt": "{:\uf133 %A, %d %B, %Y}",
-        "tooltip-format": "<big>{:%d %B, %Y}</big>\n<tt><small>{calendar}</small></tt>"
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
     },
-
-
+    "cpu": {
+        "format": "{usage}% ",
+    },
+    "memory": {
+        "format": "{used} GB "
+    },
+    "temperature": {
+        "thermal-zone": 9,
+        // "hwmon-path": "/sys/class/hwmon/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": [""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
     "battery": {
         "states": {
+            "good": 80,
             "warning": 30,
             "critical": 15
         },
+        "interval": 1,
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
+        "format-charging": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        "format-full": "",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
-
-    "network": {
-        "interval": 5,
-        "format-wifi": "\uf1eb",
-        "format-ethernet": "\uf796",
-        "format-disconnected": "\uf127  Offline",
-        "tooltip-format": "{ifname}: {ipaddr}",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%): {ipaddr}"
+    "battery#bat2": {
+        "bat": "BAT2",
     },
-    "network#vpn": {
-      "interval": 5,
-      "interface": "tun0",
-      "format": "\uf3ed",
-      "format-disconnected": "",
-      "tooltip-format": "VPN Connected: {ipaddr}"
-  },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        // "format-wifi": "[{bandwidthUpBits}]/[{bandwidthDownBits}] ",
+        "format-ethernet": "[{bandwidthUpBits}]/[{bandwidthDownBits}] ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        //"format-alt": "{ifname}: {ipaddr}/{cidr}",
+        //"on-click": "iwgtk",
+	      "on-click": "kitty nmtui",
+    },
     "pulseaudio": {
-        "scroll-step": 1,
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-bluetooth-muted": " {icon}",
-        "format-muted": "",
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
         "format-source": "",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pkill pulsemixer; kitty -e pulsemixer"
+        "on-click": "pavucontrol"
     },
-    "pulseaudio#mic": {
-        "format": "{format_source}",
-        "format-source": "",
-        "format-source-muted": "",
-        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-        "tooltip": false
+	"bluetooth": {
+    	// "format-alt": "bluetooth: {status}",
+    	"format-on": "",
+    	"format-off": "!",
+    	"on-click": "kitty bluetuith",
+    	"tooltip-format": "{status}"
     },
-    "custom/gammastep": {
-      "format": "{}",
-      "interval": 5,
-      "on-update": "",
-      "exec": "sleep 0.05; /usr/bin/gammastep.sh",
-      "on-click": "/usr/bin/gammastep.sh toggle"
-  }
-
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
 }
+
+
