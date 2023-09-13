@@ -10,10 +10,10 @@
 
     "modules-center": [],
 
-    "modules-right": ["tray", "cpu", "memory", "network", "bluetooth", "temperature", "battery", "battery#bat2", "pulseaudio", "clock"],
+    "modules-right": ["tray", "cpu", "memory", "temperature", "battery", "battery#bat2", "network","bluetooth", "custom/media", "pulseaudio", "clock"],
 
     "hyprland/workspaces": {
-    	"format": "{icon}",
+    	"format": "{name} {icon}",
     	"format-icons": {
     		"urgent": "",
     		"focused": "",
@@ -152,18 +152,21 @@
     	"on-click": "kitty bluetuith",
     	"tooltip-format": "{status}"
     },
+
+    // https://github.com/Alexays/Waybar/blob/master/resources/custom_modules/mediaplayer.py
+    // https://www.reddit.com/r/swaywm/comments/ni0vso/waybar_spotify_tracktitle/
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
         "max-length": 40,
         "format-icons": {
             "spotify": "",
-            "default": "🎜"
+            "default": ""
         },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+      "on-click": "playerctl play-pause",
+      "on-scroll-up": "playerctl next",
+      "on-scroll-down": "playerctl previous",
+      "escape": true,
+      "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+    },
 }
-
-

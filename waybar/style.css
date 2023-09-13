@@ -63,6 +63,7 @@ tooltip {
 #tray,
 #cpu,
 #memory,
+#custom-media,
 #backlight {
     background: #1e1e2e;
     opacity: 0.8;
@@ -129,7 +130,7 @@ tooltip {
 
 #bluetooth {
     color: #89b4fa;
-    border-radius: 20px;
+    border-radius: 0 20px 20px 0;
     margin-right: 10px
 } 
 
@@ -137,6 +138,7 @@ tooltip {
     color: #89b4fa;
     border-left: 0px;
     border-right: 0px;
+    border-radius: 0 20px 20px 0;
 }
 
 #pulseaudio.microphone {
@@ -159,4 +161,8 @@ tooltip {
     border-radius: 20px;
     border-right: 0px;
     margin-left: 0px;
+}
+
+#custom-media {
+  border-radius: 20px 0 0 20px;
 }
