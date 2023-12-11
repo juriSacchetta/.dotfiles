@@ -60,11 +60,11 @@ def run_qemu_with_strace(program, only_not_hooked=False, qemu_classic=False, fio
         ]
     
     if qemu_classic:
-        qemu_command = f"~/Thesis/qemu_8/build/qemu-x86_64 -strace {program}"
+        qemu_command = f"~/DeSaCloud/Thesis/qemu_8/build/qemu-x86_64 -strace {program}"
     elif fioraldi:
-        qemu_command = f"~/Thesis/fioraldi/build/qemu-x86_64 -d strace {program}"
+        qemu_command = f"~/DeSaCloud/Thesis/build/qemu-x86_64 -d strace {program}"
     else:
-        qemu_command = f"~/Thesis/qemu-fibers/build/qemu-x86_64 -d strace {program}"
+        qemu_command = f"~/DeSaCloud/Thesis/qemu-fibers/build/qemu-x86_64 -d strace {program}"
     print(f"Starting: {qemu_command}")
     
     re_hooked_syscall = f"({'|'.join([re.escape(s) for s in syscalls_hooked])})(\\()"

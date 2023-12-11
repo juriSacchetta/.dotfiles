@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Check if a network name is provided
+if [ -z "$1" ]; then
+    echo "Usage: $0 <network_name>"
+    exit 1
+fi
+
+# Get the WireGuard network name from the command line argument
+NETWORK_NAME="$1"
+
+# Check if the WireGuard interface exists
+if ip link show dev $NETWORK_NAME &> /dev/null; then
+    # Interface exists, take it down
+    wg-quick down $NETWORK_NAME
+
+    # Check the return code of the last command
+    if [ $? -ne 0 ]; then
+        echo "Error taking down WireGuard connection. Exiting."
+        exit 1
+    fi
+fi
+
+# Bring up the WireGuard connection
+wg-quick up $NETWORK_NAME
+
+# Check the return code of the last command
+if [ $? -ne 0 ]; then
+    echo "Error bringing up WireGuard connection. Exiting."
+    exit 1
+fi
+
+echo "WireGuard connection for $NETWORK_NAME updated successfully."
+
