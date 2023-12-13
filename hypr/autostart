@@ -57,21 +57,21 @@ udiskie &
 # waybar
 ~/.config/hypr/scripts/launch_waybar.sh &
 # gBar bar 0 & # main monitor
-gBar bar 1 & # secondary monitor
+# gBar bar 1 & # secondary monitor
 
 # battery notification
 ~/.config/hypr/scripts/batterynotify.sh &
 
 # eww
-eww daemon
+# eww daemon
 
 # applets
 # ~/.config/hypr/scripts/appindicator.py &
-blueman-applet &
+# blueman-applet &
 nm-applet --indicator &
 
 # cursor & touchpad gestures
-hyprctl setcursor Sweet-cursors 24 &
+# hyprctl setcursor Sweet-cursors 24 &
 libinput-gestures-setup start &
 
 # clipboard
@@ -79,5 +79,7 @@ wl-paste --type text --watch cliphist store &  # store text data
 wl-paste --type image --watch cliphist store & # store image data
 
 # idle
-swayidle -w timeout 600 "swaylock" before-sleep "swaylock" & # lock screen after 10 min of idle
-swayidle -w timeout 1200 "systemctl hibernate" &             # hibernate after 20 mins of idle
+swayidle -w timeout 300 "swaylock" before-sleep "swaylock" & # lock screen after 10 min of idle
+swayidle -w timeout 600 "systemctl hibernate" &             # hibernate after 20 mins of idle
+
+nextcloud &
