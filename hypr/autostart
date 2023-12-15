@@ -83,3 +83,5 @@ swayidle -w timeout 300 "swaylock" before-sleep "swaylock" & # lock screen after
 swayidle -w timeout 600 "systemctl hibernate" &             # hibernate after 20 mins of idle
 
 nextcloud &
+
+discord --start-minimized &
