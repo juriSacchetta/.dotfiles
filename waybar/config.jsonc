@@ -54,7 +54,7 @@
     "format": "󱧘 {}",
     //"exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",       // # of updates and tooltip details
     "exec": "~/.config/waybar/scripts/arch_updates.sh",
-    "on-click": "kitty --class wm-floating --title all_is_kitty --hold --detach sh -c 'pacman -Syu'",
+    "on-click": "kitty --class wm-floating --title all_is_kitty --hold --detach sh -c 'sudo pacman -Syu -y'",
     "tooltip": true
   },
   "cpu": {
