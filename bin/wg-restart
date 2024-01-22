@@ -2,8 +2,23 @@
 
 # Check if a network name is provided
 if [ -z "$1" ]; then
-    echo "Usage: $0 <network_name>"
+    echo "Usage: $0 <network_name> [--ping <ip_address>]"
     exit 1
+fi
+
+PING_CHECK=false
+PING_IP=""
+
+# Check for optional --ping flag
+if [ "$2" == "--ping" ]; then
+    PING_CHECK=true
+    PING_IP="$3"
+
+    # Check if IP address is provided
+    if [ -z "$PING_IP" ]; then
+        echo "Error: IP address missing for ping check. Exiting."
+        exit 1
+    fi
 fi
 
 # Get the WireGuard network name from the command line argument
@@ -11,6 +26,13 @@ NETWORK_NAME="$1"
 
 # Check if the WireGuard interface exists
 if ip link show dev $NETWORK_NAME &> /dev/null; then
+
+  if [ "$PING_CHECK" = true ]; then
+    if ping -c 1 -W 1 "$PING_IP" &> /dev/null; then
+        echo "Network is already active."
+        exit 0
+    fi
+  fi
     # Interface exists, take it down
     wg-quick down $NETWORK_NAME
 
@@ -28,6 +50,13 @@ wg-quick up $NETWORK_NAME
 if [ $? -ne 0 ]; then
     echo "Error bringing up WireGuard connection. Exiting."
     exit 1
+fi
+
+
+if [ "$PING_CHECK" = true ]; then
+  if ! ping -c 1 -W 1 "$PING_IP" &> /dev/null; then
+    echo "Some error occurs, WireGuard was correctly setup but the newtork is unreachable."
+  fi
 fi
 
 echo "WireGuard connection for $NETWORK_NAME updated successfully."

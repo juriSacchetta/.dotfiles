@@ -1,0 +1,152 @@
+Alacritty
+AnyDesk
+Archive Manager
+Autopsy
+Avahi SSH Server Browser
+Avahi VNC Server Browser
+Avahi Zeroconf Browser
+BinDiff
+Binary Ninja Demo
+Birdtray
+Bitwarden
+Books
+Boxes
+Burp Suite Free Edition
+Byobu Gnome Terminal
+Byobu Terminal
+CMake
+Calculator
+Calendar
+Characters
+Cheese
+Chromium
+Clocks
+Color Profile Viewer
+Contacts
+Discord
+Disk Usage Analyzer
+Disks
+Document Scanner
+Document Viewer
+DrRacket
+Easy Effects
+Electron 21
+Electron 24
+Electron 25
+Evolution
+Extensions
+Eye of GNOME
+FLUID
+Files
+Firefox Web Browser
+Flameshot
+Fonts
+FreeTube
+GHex
+GNOME Network Displays
+GNOME System Monitor
+GNU Image Manipulation Program
+GParted
+GVim
+Ghidra
+GitKraken
+Hardware Locality lstopo
+Help
+Htop
+IDA
+Imager
+IntelliJ IDEA Ultimate Edition
+JDownloader
+Joplin
+KiCad
+KiCad Gerber Viewer
+KiCad Image Converter
+KiCad PCB Calculator
+KiCad PCB Editor (Standalone)
+KiCad Schematic Editor (Standalone)
+Laptop Mode Tools Configuration
+LibreOffice
+LibreOffice Base
+LibreOffice Calc
+LibreOffice Draw
+LibreOffice Impress
+LibreOffice Math
+LibreOffice Writer
+Logs
+Logseq
+LunarVim
+Manage Printing
+Maps
+Meld
+Microsoft Edge
+Music
+Neovim
+Nextcloud Desktop
+NitroShare
+NordVPN
+OBS Studio
+ONLYOFFICE Desktop Editors
+Okular
+Open a New Window
+OpenJDK Java 11 Console
+OpenJDK Java 11 Shell
+OpenJDK Java 17 Console
+OpenJDK Java 17 Shell
+PDF Arranger
+Parental Controls
+Photos
+PulseAudio Volume Control
+Qt Assistant
+Qt Designer
+Qt Linguist
+Qt QDBusViewer 
+Qt V4L2 test Utility
+Qt V4L2 video capture utility
+R
+Rofi
+Rofi Theme Selector
+Rygel Preferences
+Settings
+Singular
+Singular Manual
+Skype
+Slideshow
+Software
+Solaar
+Spotify
+System Monitor
+Telegram Desktop
+Terminal
+Thunderbird
+Timeshift
+Transmission
+Tweaks
+UXTerm
+Unigine Valley
+Upscayl
+VLC media player
+Videos
+Vim
+Virtual Machine Manager
+Visual Studio Code
+Visual Studio Code Insiders
+Vorta
+Weather
+Web
+Wireshark
+XDot
+XDvi
+XTerm
+Xcas
+Zoom
+Zotero
+balenaEtcher
+btop++
+dupeGuru
+gedit
+gitg
+ipython
+kitty
+nvtop
+whatsdesk
+xmaxima

@@ -192,7 +192,7 @@ fn_status() {
 
 fn_status_change() { # Handle when status changes
 	for battery in /sys/class/power_supply/BAT*; do
-		battery_status=$(<"$battery/status") battery_percentage=$(<"$battery/capacity")
+    battery_status=$(<"$battery/status") battery_percentage=$(<"$battery/capacity")
 		if [ "$battery_status" != "$last_battery_status" ] || [ "$battery_percentage" != "$last_battery_percentage" ]; then
 			last_battery_status=$battery_status last_battery_percentage=$battery_percentage # Check if battery status or percentage has changed
 			fn_verbose
@@ -240,7 +240,7 @@ EOF
 			trap resume_processes SIGINT
 		fi
 		fn_status_change # initiate the function
-		last_notified_percentage=$battery_percentage
+    last_notified_percentage=$battery_percentage
 		prev_status=$battery_status
 
 		dbus-monitor --system "type='signal',interface='org.freedesktop.DBus.Properties',path='$(upower -e | grep battery)'" 2>/dev/null | while read -r battery_status_change; do fn_status_change; done

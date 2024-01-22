@@ -1,5 +1,3 @@
-/* usbreset -- send a USB port reset to a USB device */
-
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>

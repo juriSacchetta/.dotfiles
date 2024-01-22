@@ -56,6 +56,9 @@ udiskie &
 
 # waybar
 ~/.config/hypr/scripts/launch_waybar.sh &
+
+sleep 5
+
 # gBar bar 0 & # main monitor
 # gBar bar 1 & # secondary monitor
 
@@ -85,4 +88,5 @@ swayidle -w timeout 600 "systemctl hibernate" &             # hibernate after 20
 nextcloud &
 birdtray &
 discord --start-minimized &
-flameshot &
+vorta --daemonize &
+

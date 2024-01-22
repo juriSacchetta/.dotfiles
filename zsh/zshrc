@@ -117,9 +117,7 @@ alias pwninit='pwninit --template-path ~/.config/pwninit-template.py'
 
 export WORKON_HOME=$HOME/.virtualenvs
 export EDITOR=nvim
-#export PATH=$(echo "$PATH" | sed -e 's/:\/usr\/lib\/python310.zip$//')
 source /usr/bin/virtualenvwrapper.sh
-eval $(thefuck --alias)
 
 #To start tmux at every shell login https://wiki.archlinux.org/title/Tmux#Start_tmux_on_every_shell_login
 #if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
@@ -130,3 +128,7 @@ eval $(thefuck --alias)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+for file in ~/.config/zsh/source/*; do
+    source $file
+done

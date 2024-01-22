@@ -45,6 +45,10 @@
     "placeholder": {
       "command": "",
       "lazy": true
+    },
+    "thunderbird": {
+      "command": "thunderbird",
+      "lazy": false
     }
   }
 }
